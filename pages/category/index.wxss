@@ -1,0 +1,47 @@
+.ClassifyContainer{
+  display: flex;
+  height:calc( 100vh - 90rpx);
+}
+.ClassifyContainer .left_menu{
+  height: 100%;
+  flex:1;
+}
+.active{
+  color:red;
+}
+.ClassifyContainer .left_menu view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90rpx;
+}
+.ClassifyContainer .right_menu{
+  height:100%;
+  flex:3;
+}
+.right_item{
+  padding-bottom: 75rpx;
+}
+.right_item .right_item-header{
+  display: flex;
+  font-size: 30rpx;
+  font-weight: 500;
+  justify-content: center;
+  align-items:center;
+  height: 90rpx;
+}
+.right_item .right_item-content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.right_item .right_item-content > view{
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right_item .right_item-content  image{
+  width: 100%;
+}

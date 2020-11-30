@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 搜索框 -->
+  <searchbar></searchbar>
+  <!-- 轮播图 -->
+  <swiper class="SwiperBox" autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}">
+    <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+      <image mode="widthFix" src="{{item.image_src}}"></image>
+    </swiper-item>
+  </swiper>
+  <!-- 分类精选 -->
+  <view class="CateBox">
+    <view wx:for="{{cateList}}" wx:key="name">
+        <image mode="widthFix" src="{{item.image_src}}"></image>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view>
+    <view wx:for="{{productList}}" wx:key="floor_title"
+    wx:for-item="item" wx:for-index="index" >
+      <view class="Product"> 
+        <view class="productHeader">
+          <image mode="widthFix" src="{{item.floor_title.image_src}}"></image>
+        </view>
+        <view class="productBody">
+          <navigator  wx:for="{{item.product_list}}" wx:key="name" wx:for-item="item1" wx:for-index="index1">
+            <image mode="{{index1 === 0 ? 'widthFix':'scaleToFill'}}" src="{{item1.image_src}}"></image>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

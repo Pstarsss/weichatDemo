@@ -1,0 +1,48 @@
+/**index.wxss**/
+view{
+  color:var(--themeColor);
+}
+.SwiperBox{
+  width: 100%;
+  height: 340rpx;
+}
+.SwiperBox image{
+  width: 100%;
+}
+.CateBox{
+  display: flex;
+}
+.CateBox view{
+  flex:1;
+  padding:20rpx;
+}
+.CateBox view image{
+  width: 100%;
+}
+.Product{
+  margin:30rpx 0;
+  padding:30rpx 0;
+  clear: both;
+}
+.productHeader{
+  width: 100%;
+  height: 100%;
+}
+.productBody navigator{
+  float: left;
+  width:33.33vw;
+  height: 100%;
+
+}
+.productBody navigator:not(:first-child){
+  height: 27.73vw;
+  border-left:8rpx solid #fff;
+}
+.productBody navigator:nth-of-type(2),
+.productBody navigator:nth-of-type(3){
+  border-bottom: 8rpx solid #fff;
+}
+.productBody image{
+  width:100%;
+  height: 100%;
+}

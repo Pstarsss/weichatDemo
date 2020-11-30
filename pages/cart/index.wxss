@@ -1,0 +1,11 @@
+/* pages/cart/index.wxss */
+.p1,.p2{
+  width: 100rpx;
+  height: 100rpx;
+}
+.p1{
+  background-color: red;
+}
+.p2{
+  background-color: lawngreen;
+}

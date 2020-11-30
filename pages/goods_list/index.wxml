@@ -1,0 +1,7 @@
+<!--pages/goods_list/index.wxml-->
+<view>
+  <searchbar></searchbar>
+  <view wx:for="{{tabs}}" wx:key="*this">
+    <view>{{item}}</view>
+  </view>
+</view>
