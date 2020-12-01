@@ -11,7 +11,7 @@ Page({
     id:'',
     List:'',
     pics:'',
-    attrs:''
+    attrs:'',
   },
 
   /**
@@ -50,6 +50,24 @@ Page({
       current: e.currentTarget.dataset.src, // 当前显示图片的http链接
       urls// 需要预览的图片http链接列表
     })
+  },
+
+
+  /**
+   * 添加购物车
+   */
+  onAddCart(){
+    let temp = wx.getStorageSync('cart') || [];
+
+    if(temp.length){
+      let item = temp.find(i =>  i.goods_id == this.data.id);
+      item.num++;
+    }else{
+      this.data.List.num = 1;
+      this.data.List.checked = false;
+      temp.push(this.data.List);
+      wx.setStorageSync('cart', temp);
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

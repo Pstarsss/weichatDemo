@@ -1,5 +1,5 @@
 <!--pages/goods_detail/index.wxml-->
-<view>
+<view class="Product_detail-container">
   <swiper autoplay="true" indicator-dots="true" circular="true">
     <block wx:for="{{pics}}" wx:key="pics_id">
       <swiper-item>
@@ -24,5 +24,24 @@
       <rich-text nodes="{{List.goods_introduce}}">
       </rich-text>
   </view>
-
+  <view class="bottom-menua"> 
+    <view class="menu-item">
+      <view class="iconfont icon-kefu"></view>
+      <view>客服</view>
+    </view>
+    <view class="menu-item">
+      <view class="iconfont icon-fenxiang"></view>
+      <view>分享</view>
+    </view>
+    <navigator open-type="switchTab" url="/pages/cart/index" class="menu-item">
+      <view class="iconfont icon-gouwuchekong"></view>
+      <view>购物车</view>
+    </navigator>
+    <view class="add-cart menu-item" bindtap="onAddCart">
+      <view>加入购物车</view>
+    </view>
+    <view class="buy-now menu-item">
+      <view>立即购买</view>
+    </view>
+  </view>
 </view>
