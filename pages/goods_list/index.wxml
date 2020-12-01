@@ -1,7 +1,25 @@
 <!--pages/goods_list/index.wxml-->
 <view>
   <searchbar></searchbar>
-  <view wx:for="{{tabs}}" wx:key="*this">
-    <view>{{item}}</view>
+  <view class="goods_tabs">
+     <view wx:for="{{tabs}}" wx:key="*this" wx:for-index="index" class="{{index === currendIndex ? 'active' : ''}} goods_tabs-item" bindtap="onSwicthtab" data-index="{{index}}">
+        {{item}}
+      </view>
+  </view>
+  <view class="product_content-container" v-if="goods">
+    <navigator wx:for="{{goods}}" 
+    wx:for-item="item" 
+    wx:for-index="index" 
+    wx:key="goods_id"
+    class="goods_item"
+    bindtap="onDetailPage"
+    url="/pages/goods_detail/index?id={{item.goods_id}}">
+      <view class="goods_item-img"><image mode="widthFix" 
+        src="{{item.goods_small_logo ? item.goods_small_logo:'https://iconfont.alicdn.com/t/0aa7c871-ae9b-4b16-ba53-a63e60deefe5.png'}}"></image></view>
+      <view class="goods_item-info">
+        <view class="goods_item-infoName">{{item.goods_name}}</view>
+        <view class="goods_item-infoPrice">￥{{item.goods_price}}</view>
+      </view>
+    </navigator>
   </view>
 </view>
