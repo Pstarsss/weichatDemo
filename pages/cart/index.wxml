@@ -1,8 +1,40 @@
 <!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
-<view class="p1">
+<view>
+  <view class="shipping_address">
+    收获地址模块
+    <input type="radio" />
+  </view>
+  <view class="cart">
+    <view class="cart_header">
+      购物车
+    </view>
+    <view class="cart_content">
+      <view class="cart_content-item" 
+      wx:for="{{lists}}"
+      wx:for-item="item"
+      wx:for-index="index"
+      wx:key="goods_id">
+        <checkbox-group class="Checked" bindchange="changeChecked" data-index="{{index}}">
+          <checkbox  checked="{{item.checked}}"  disabled="{{item.num == 0?true:false}}"/>
+        </checkbox-group>
+        <view class="Info">
+          <image mode="widthFix" src="{{item.goods_small_logo}}"></image>
+          <view class="Text">
+            <view class="header">
+              {{item.goods_name}}
+            </view>
+            <view class="money">
+              <view>{{item.goods_price}}</view>
+              <view class="operation">
+                <button bindtap="AddSub" data-index="1">+</button>
+                <view>{{item.num}}</view>
+                <button bindtap="AddSub" data-index="-1">-</button>
+              </view>
+            </view>
+          </view>
+        </view>
 
-</view>
-<view class="p2">
-
+      </view>
+    </view>
+  </view>
 </view>

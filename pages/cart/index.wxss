@@ -1,11 +1,56 @@
 /* pages/cart/index.wxss */
-.p1,.p2{
-  width: 100rpx;
-  height: 100rpx;
+.cart_content{
+  width:100vw;
 }
-.p1{
-  background-color: red;
+.cart_content-item{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
 }
-.p2{
-  background-color: lawngreen;
+.Checked{
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.Info{
+  flex:6;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Info image{
+  flex:1;
+}
+.Info .Text{
+  flex:2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.Text .header{
+  width:200px;
+  font-size:30rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.money{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.operation{
+  display: flex;
+
+}
+.operation button{
+  width: 30rpx !important;
+  background-color:#fff;
+  padding:0;
+}
+
+

@@ -38,7 +38,6 @@ Page({
        pics,
        attrs,
      });
-     console.log(res.data.message);
   },
 
   /**
@@ -61,11 +60,27 @@ Page({
 
     if(temp.length){
       let item = temp.find(i =>  i.goods_id == this.data.id);
-      item.num++;
+      if(item){
+        item.num++ ;
+        wx.showToast({
+          title: '数量加-',
+        })
+      }else{
+        this.data.List.num = 1;
+        this.data.List.checked = false;
+        temp.push(this.data.List);
+        wx.showToast({
+          title: '添加购物车成功',
+        })
+        wx.setStorageSync('cart', temp);
+      }
     }else{
       this.data.List.num = 1;
       this.data.List.checked = false;
       temp.push(this.data.List);
+      wx.showToast({
+        title: '添加购物车成功',
+      })
       wx.setStorageSync('cart', temp);
     }
   },

@@ -1,20 +1,39 @@
 // pages/cart/index.js
+let carts;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    lists:[],
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    carts = wx.getStorageSync('cart');
+    if(carts.length){
+      this.setData({
+        lists:carts
+      })
+      console.log(this.data.lists);
+    }
   },
-
+  changeChecked(e){
+    let t2 = e.target.dataset.index;
+    let map1 = this.data.lists.map((item,index) =>{
+        if(index == t2){
+          item.checked = !item.checked
+        }
+        return item;
+    })
+    this.setData({
+        lists :map1
+    });
+    console.log(this.data.lists);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
