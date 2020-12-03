@@ -34,6 +34,22 @@ Page({
     });
     console.log(this.data.lists);
   },
+  bindgetuserinfo1(item){
+    console.log(item)
+  },
+  bindgetuserinfo(item){
+    console.log(item);
+    // bindgetuserinfo();
+    // wx.chooseLocation({
+    //   success(e){
+    //     console.log(e);
+    //     console.log(e.address);
+    //   },
+    //   fail(e){
+    //     console.log(e)
+    //   }
+    // })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

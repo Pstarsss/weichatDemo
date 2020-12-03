@@ -1,4 +1,12 @@
 /* pages/cart/index.wxss */
+.shipping_address{
+  padding:10px;
+  border-bottom:1px solid green;
+}
+.shipping_address button{
+  padding:20rpx 40rpx;
+  border:1px solid red;
+}
 .cart_content{
   width:100vw;
 }
@@ -16,23 +24,24 @@
 .Info{
   flex:6;
   display: flex;
-  flex-wrap: wrap;
+  
 }
-.Info image{
-  flex:1;
+.Info .imgbox{
+  
+}
+.Info .imgbox image{
+  width: 200rpx;
 }
 .Info .Text{
-  flex:2;
-  display: flex;
+  
+  /* display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-around; */
 }
-.Text .header{
-  width:200px;
-  font-size:30rpx;
+.Text .head{
   overflow: hidden;
-  white-space: nowrap;
+  white-space: wrap;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
