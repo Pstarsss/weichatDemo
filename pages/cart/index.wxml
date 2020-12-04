@@ -1,12 +1,19 @@
 <!--pages/cart/index.wxml-->
 <view>
   <view class="shipping_address">
-    <button bindgetuserinfo="bindgetuserinfo"  open-type="getUserInfo">获取收获地址</button>
+    <button bindtap="bindgetuserinfo" >
+      {{address.length==0?'获取收获地址':address}}
+    </button>
+    
   </view>
 
   <view class="cart">
     <view class="cart_header">
-      购物车
+      <view>
+        <radio></radio>
+        全选
+      </view>
+      <image mode="widthFix" src="../../icon1/laji.svg"  />
     </view>
     <view class="cart_content">
       <view class="cart_content-item" 
@@ -26,11 +33,11 @@
               {{item.goods_name}}
             </view>
             <view class="money">
-              <view>{{item.goods_price}}</view>
+              <view class="money-price">￥{{item.goods_price}}</view>
               <view class="operation">
-                <button bindtap="AddSub" data-index="1">+</button>
+                <view bindtap="AddSub" data-index="1" >+</view>
                 <view>{{item.num}}</view>
-                <button bindtap="AddSub" data-index="-1">-</button>
+                <view bindtap="AddSub" data-index="-1">-</view>
               </view>
             </view>
           </view>

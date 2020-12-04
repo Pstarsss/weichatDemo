@@ -7,12 +7,15 @@ Page({
    */
   data: {
     lists:[],
+    address:'',
+    aa:'1'
   },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this);
     carts = wx.getStorageSync('cart');
     if(carts.length){
       this.setData({
@@ -32,23 +35,67 @@ Page({
     this.setData({
         lists :map1
     });
-    console.log(this.data.lists);
-  },
-  bindgetuserinfo1(item){
-    console.log(item)
   },
   bindgetuserinfo(item){
-    console.log(item);
-    // bindgetuserinfo();
-    // wx.chooseLocation({
-    //   success(e){
-    //     console.log(e);
-    //     console.log(e.address);
-    //   },
-    //   fail(e){
-    //     console.log(e)
-    //   }
-    // })
+    wx.chooseLocation({
+      success:(res)=>{
+        console.log(this);
+        console.log(Page);
+        this.setData({
+          address:res.address
+        });
+      },
+      fail:function(e){
+        wx.showModal({
+          cancelColor: 'cancelColor',
+          title:'提示',
+          content: '您需要重新打开授权才能确认位置',
+          success:function(){
+            wx.openSetting({})
+          },
+          fail:function(){
+            wx.openSetting({})
+          }
+        })
+      }
+      // fail(){
+      //   wx.getSetting({
+      //     success:function(tt){
+      //       wx.chooseAddress({
+      //         success:function (result) {
+      //           console.log(result)
+      //         },
+      //         fail:function(){
+      //               wx.showModal({
+      //           title: '提示',
+      //           content: '您未开启保存图片到相册的权限，请点击确定去开启权限！',
+      //           success: function() {
+      //             wx.openSetting({
+      //               withSubscriptions: true,
+      //             })
+      //           }
+      //        })
+      //         }
+      //       })
+
+      //       // if(!tt.authSetting['scope.userLocation']){
+      //       //   wx.showModal({
+      //       //     title: '提示',
+      //       //     content: '您未开启保存图片到相册的权限，请点击确定去开启权限！',
+      //       //     success: function() {
+      //       //       wx.openSetting({
+      //       //         withSubscriptions: true,
+      //       //       })
+      //       //     }
+      //       //  })
+      //       // }
+            
+      //     }
+      //   })
+      // }
+    })
+   
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
