@@ -17,7 +17,6 @@
   padding: 20rpx;
   border-bottom:1px solid #ccc;
 }
-
 .cart_header > image{
   width: 16px;
 }
@@ -70,14 +69,40 @@
   display: flex;
   align-items: center;
 }
-/* .operation view{
-  padding:20rpx;
-  border:1px solid black;
-} */
 .operation view{
   background-color:#fff;
   border:1px solid #ccc;
   padding: 10rpx 30rpx;
 }
+.bottom-pay{
+  position:fixed;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width:100%;
+  height: 50px;
+  border:1px solid #d4d4d4;
+}
+.pay-button{
+  font-size:20px;
+  color:#fff;
+  padding:20rpx 50rpx;
+  background-color:red;
+}
 
+.pay_info-price {
+  display: flex;
+  align-items: flex-end;
+  font-size: 14px;
+}
+.pay_info-count{
+  font-size: 12px;
+    color: #ccc;
+    padding-bottom: 10rpx;
+}
+.pay_info-price text:last-child{
+  color:red;
+  padding:0 10rpx 0 20rpx;
+}
 

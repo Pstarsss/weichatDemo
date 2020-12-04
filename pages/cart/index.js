@@ -1,16 +1,16 @@
 // pages/cart/index.js
 let carts;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     lists:[],
     address:'',
-    aa:'1'
+    totalPrice:0,
+    totalMount:0,
+    payed:false,
   },
-  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -22,13 +22,33 @@ Page({
         lists:carts
       })
       console.log(this.data.lists);
+      carts.forEach(i=>{
+        i.checked ?this.setData({
+          totalPrice:parseInt(this.data.totalPrice) + parseInt(i.num) * parseInt(i.goods_price),
+          totalMount:parseInt(this.data.totalMount) + parseInt(i.num)
+        }): '';
+      })
     }
   },
+  /**
+   * 勾选商品
+   * @param {*} e 
+   */
   changeChecked(e){
-    let t2 = e.target.dataset.index;
+    let t2 = e.target.dataset.index
     let map1 = this.data.lists.map((item,index) =>{
         if(index == t2){
           item.checked = !item.checked
+          item.checked ?
+            this.setData({
+              totalPrice:parseInt(this.data.totalPrice) + parseInt(item.num) * parseInt(item.goods_price),
+              totalMount:parseInt(this.data.totalMount) + parseInt(item.num)
+            })
+            :
+            this.setData({
+              totalPrice:parseInt(this.data.totalPrice) - parseInt(item.num) * parseInt(item.goods_price),
+              totalMount:parseInt(this.data.totalMount) - parseInt(item.num)
+            })
         }
         return item;
     })
@@ -36,11 +56,13 @@ Page({
         lists :map1
     });
   },
+  /**
+   * 获取用户的位置信息
+   * @param {*} item 
+   */
   bindgetuserinfo(item){
     wx.chooseLocation({
       success:(res)=>{
-        console.log(this);
-        console.log(Page);
         this.setData({
           address:res.address
         });
@@ -58,44 +80,76 @@ Page({
           }
         })
       }
-      // fail(){
-      //   wx.getSetting({
-      //     success:function(tt){
-      //       wx.chooseAddress({
-      //         success:function (result) {
-      //           console.log(result)
-      //         },
-      //         fail:function(){
-      //               wx.showModal({
-      //           title: '提示',
-      //           content: '您未开启保存图片到相册的权限，请点击确定去开启权限！',
-      //           success: function() {
-      //             wx.openSetting({
-      //               withSubscriptions: true,
-      //             })
-      //           }
-      //        })
-      //         }
-      //       })
-
-      //       // if(!tt.authSetting['scope.userLocation']){
-      //       //   wx.showModal({
-      //       //     title: '提示',
-      //       //     content: '您未开启保存图片到相册的权限，请点击确定去开启权限！',
-      //       //     success: function() {
-      //       //       wx.openSetting({
-      //       //         withSubscriptions: true,
-      //       //       })
-      //       //     }
-      //       //  })
-      //       // }
-            
-      //     }
-      //   })
-      // }
     })
-   
+  },
+  /**
+   * 全选商品操作
+   */
+  checkboxchange(){
+    carts.forEach(i=>i.checked=!i.checked);
+    this.setData({
+      lists:carts
+    });
+  },
+  /**
+   * 删除商品
+   * 删除选中的商品
+   * @param {*} e 
+   */
+  onDel(){
+    carts = carts.filter(i=>{
+      if(i.checked === false){
+        return i;
+      }
+    });
+    this.setData({
+      lists: carts
+    })
+  },
+  /**
+   * 商品的数据加减
+   */
+  AddSub(e){
+    const {num,index,item} = e.currentTarget.dataset;
+    if(carts[index].num < 0){
+      return false
+    }
+    item.checked ?
+      this.setData({
+        totalPrice:parseInt(this.data.totalPrice) + parseInt(num) * parseInt(item.goods_price),
+        totalMount:parseInt(this.data.totalMount) + parseInt(num)
+      })
+    :
+    "";
+    carts[index].num = parseInt(carts[index].num) + parseInt(num)
+    this.setData({
+      lists:carts,
+    });
     
+  },
+  /**
+   * 付钱
+   */
+  toPay(){
+    if(this.data.address.length > 0 &&this.data.totalPrice>0){
+      wx.showModal({
+        title:'提示',
+        content:'您是准备起飞了吗',
+        success(){
+          wx.requestPayment({
+            timeStamp: '',
+            nonceStr: '',
+            package: '',
+            signType: 'MD5',
+            paySign: '',
+            success (res) { console.log(res) },
+            fail (res) { console.log(res)}
+          })
+        }
+      })
+    }else{
+      console.log('12312');
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -115,7 +169,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    wx.setStorageSync('cart', carts);
   },
 
   /**

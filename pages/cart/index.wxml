@@ -10,10 +10,13 @@
   <view class="cart">
     <view class="cart_header">
       <view>
-        <radio></radio>
-        全选
+        <checkbox-group bindchange="checkboxchange">
+          <checkbox></checkbox>
+          全选
+        </checkbox-group>
+        
       </view>
-      <image mode="widthFix" src="../../icon1/laji.svg"  />
+      <image mode="widthFix" src="../../icon1/laji.svg" bindtap="onDel" />
     </view>
     <view class="cart_content">
       <view class="cart_content-item" 
@@ -33,17 +36,39 @@
               {{item.goods_name}}
             </view>
             <view class="money">
-              <view class="money-price">￥{{item.goods_price}}</view>
+              <view class="money-price">￥{{item.goods_price * item.num}}.00</view>
               <view class="operation">
-                <view bindtap="AddSub" data-index="1" >+</view>
+                <view bindtap="AddSub" 
+                data-num="1" 
+                data-index="{{index}}"
+                data-item="{{item}}" >+</view>
                 <view>{{item.num}}</view>
-                <view bindtap="AddSub" data-index="-1">-</view>
+                <view bindtap="AddSub" 
+                data-num="-1" 
+                data-index="{{index}}"
+                data-item="{{item}}">-</view>
               </view>
             </view>
           </view>
         </view>
-
       </view>
+    </view>
+  </view>
+  <view class="bottom-pay">
+    <view class="pay-info">
+      <view class="pay_info-price"> 
+        <text>合计:</text>
+        <text>
+           ￥{{totalPrice.length ===0 ? '0.00':totalPrice}}
+        </text>
+       
+      </view>
+      <view class="pay_info-count">
+        （共计{{totalMount==0 ? '0': totalMount}}件商品）
+      </view>
+    </view>
+    <view class="pay-button" bindtap="toPay">
+      结算
     </view>
   </view>
 </view>

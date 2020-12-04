@@ -9,4 +9,5 @@ page,view,text,swiper,swiper-item,image,navigator{
 page{
   --themeColor:#FF88C2;
   font-size: 28rpx;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
