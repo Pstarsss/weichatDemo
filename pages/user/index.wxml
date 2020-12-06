@@ -1,5 +1,12 @@
 <!--pages/user/index.wxml-->
 
 <view>
-  用户页面
+  <view class="Music_banner">
+    <image mode="scaleToFill" src="https://iconfont.alicdn.com/t/f16f5483-8992-4a94-9081-7acaef9a6b90.png"></image>
+  </view>
+
+  <view>
+    直接灵魂的歌与唱
+  </view>
+
 </view>
